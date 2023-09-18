@@ -1,0 +1,7 @@
+.user {
+    width: 1000px;
+    padding: 10px 20px;
+    border-color: var(--color-primary);
+    border-radius: 0.5rem;
+  }
+ 
