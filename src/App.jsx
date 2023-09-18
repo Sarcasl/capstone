@@ -3,7 +3,7 @@ import Header from "./components/header/Header";
 import Search from "./components/search/Search";
 import AddProducts from "./components/addproducts/AddProducts";
 import CardBody from "./components/cards/CardBody";
-import Button from "./components/button/Button";
+import Cart from "./components/cart/Cart";
 import User from "./components/user/User";
 
 import "./App.css";
@@ -41,7 +41,7 @@ const App = () => {
     setAddedItem(newItems);
     // console.log(addedItems);
   }
-  
+
   return (
     <div>
       {/* <Header /> */}
@@ -53,12 +53,16 @@ const App = () => {
         <div className="nav">
           <Header />
           <div className="nav-right">
+             <User
+              
+             
+             />
             <Search
               products={items}
               value={searchValue}
               onChangeData={changingSearchData}
             />
-            <Button num={addedItems.length} click={setShowAddProducts} />
+            <Cart num={addedItems.length} click={setShowAddProducts} />
           </div>
         </div>
 
