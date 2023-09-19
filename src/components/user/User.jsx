@@ -14,7 +14,7 @@ const User = ({ value, onChangeData }) => {
 
 
 
-
+//Login & signup form for users
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -52,11 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", e => {
         e.preventDefault();
 
-        // Perform your AJAX/Fetch login
+        
 
         setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
 
+
+//User input information
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
             if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 10) {

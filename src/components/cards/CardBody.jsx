@@ -1,6 +1,10 @@
 import React from "react";
 import Card from "./Card";
 import "./CardBody.css";
+
+
+
+//Item in cart information
 const CardBody = ({ products, addItem, removeItem, addedItems }) => {
   products.map((product) => (product.isAdded = true));
   return (

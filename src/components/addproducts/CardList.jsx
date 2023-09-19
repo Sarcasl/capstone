@@ -1,5 +1,7 @@
 import React, { useReducer, useEffect } from "react";
 import "./CardList.css";
+
+
 function reducer(state, action) {
   // console.log(state);
   if (action.type === "INCREASE") {
@@ -17,6 +19,8 @@ function reducer(state, action) {
     };
   }
 }
+
+
 const CardList = ({ item, removeItem, setAddedItem, itemsArr }) => {
   const [state, dispatch] = useReducer(reducer, item);
 
@@ -28,6 +32,7 @@ const CardList = ({ item, removeItem, setAddedItem, itemsArr }) => {
     setAddedItem(newArr);
   }, [state]);
 
+  // Delete Button
   return (
     <div className="card-list-body">
       <img src={item.image} className="card-list-img" alt="" />
@@ -42,9 +47,11 @@ const CardList = ({ item, removeItem, setAddedItem, itemsArr }) => {
       </button>
       <h4>{item.title}</h4>
       <hr />
-      <div className="card-list-add-minu-body">
+
+   {/* Add and minus buttons */}
+      <div className="card-list-add-minus-body">
         <p>Price : ${item.price}</p>
-        <div className="plus-items-minu">
+        <div className="plus-items-minus">
           <button
             className="plus-btn"
             onClick={() => {
@@ -55,7 +62,7 @@ const CardList = ({ item, removeItem, setAddedItem, itemsArr }) => {
           </button>
           <span className="num-of-items">{item.addNumber}</span>
           <button
-            className="minu-btn"
+            className="minus-btn"
             onClick={() => {
               dispatch({ type: "DECREASE" });
             }}

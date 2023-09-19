@@ -6,6 +6,8 @@ export function AddRemoveBtn({
   removeItem,
   setIsAdded,
 }) {
+
+  // Add and cancel button on main store page
   return (
     <button
       className={isAdded ? "add-item-btn" : "remove-item-btn"}

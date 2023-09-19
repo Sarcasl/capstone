@@ -48,7 +48,7 @@ const App = () => {
 
 <div className ="body"></div>
 
-
+{/* Elements listed on the header */}
       <div className="body__container">
         <div className="nav">
           <Header />
@@ -86,3 +86,8 @@ const App = () => {
 };
 
 export default App;
+
+// Move showAddProducts and CardBody to own page, products.jsx
+//install react router
+//implement react router
+//assign pages to a router

@@ -52,6 +52,8 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
           </div>
         </div>
       </div>
+
+
       <div className="right-side">
         <div className="right-side-header">
           <h1>
@@ -68,6 +70,8 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
             ⌫
           </button>
         </div>
+
+
         <div className="right-side-body">
           {items.map((item, i, itemsArr) => (
             <CardList
@@ -79,12 +83,16 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
             />
           ))}
         </div>
+
+
         <div className="right-side-footer">
           <div className="bar"></div>
           <div className="footer-head">
             <h4>Total :</h4>
             <h1>${total}</h1>
           </div>
+
+          {/* Check Out Button */}
           <div className="check-out">
             <button
               className="check-out-btn"

@@ -1,6 +1,8 @@
 import React from "react";
 import "./Search.css";
 
+
+//Search bar on store page
 const Search = ({ value, onChangeData }) => {
   return (
     <div>

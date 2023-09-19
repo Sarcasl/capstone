@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import "./Card.css";
-// import { AddRemoveBtn } from "../addremoveBtn/AddRemoveBtn";
 import { useState } from "react";
+// import { AddRemoveBtn } from "../addremoveBtn/AddRemoveBtn";
+
 
 const Card = ({ product, addItem, removeItem, addedItems }) => {
   const [isAdded, setIsAdded] = useState(true);
@@ -10,7 +11,9 @@ const Card = ({ product, addItem, removeItem, addedItems }) => {
     item.length == 0 ? setIsAdded(true) : setIsAdded(false);
   }, [item]);
 
+
   // console.log(item);
+//Image of products in cart
   return (
     <div className="card">
       <img className="card__img" src={product.image} alt="" />
@@ -19,6 +22,8 @@ const Card = ({ product, addItem, removeItem, addedItems }) => {
         <h4>{product.title}</h4>
         <p>{product.description}</p>
       </div>
+
+{/* Price of item listed in cart */}
       <div className="card-price-add">
         <span>Price : ${product.price}</span>
         <button
