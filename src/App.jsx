@@ -15,14 +15,15 @@ const App = () => {
  
 <BrowserRouter>
 <ThemeContext.Provider value="itemsFilter, additem, removeItem, addedItems, items, searchValue, changingSearchData, setShowAddProducts, setShowAddProducts, removeItem">
+  <div>navbar</div>
   <Routes>
   <Route path="/" element={<Home/>}/>
+  <Route path="/checkout" element={<div>Checkout</div>}/>
   </Routes>
+  <div>footer</div>
 </ThemeContext.Provider>
 
     
-
-
 
 </BrowserRouter>
 
@@ -30,5 +31,9 @@ const App = () => {
   )};
 
 
-export default App;
+export default App; 
 
+{/* <div className="body__container">
+<div className="nav">
+  <Header />
+  <div className="nav-right"> */}

@@ -2,7 +2,7 @@ import React, { useReducer, useEffect, useState } from "react";
 import AddProducts from "../addproducts/AddProducts";
 import CardBody from "../cards/CardBody";
 
-const Products = ({items, ShowAddProducts, setShowAddProducts, addedItems, searchValue}) => {
+const Products = ({items, ShowAddProducts, setShowAddProducts, addedItems, searchValue, setAddedItems}) => {
 
   const itemsFilter = items.filter((item) =>
   item.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -12,13 +12,15 @@ const Products = ({items, ShowAddProducts, setShowAddProducts, addedItems, searc
   function addItem(item) {
     item.addNumber = 1;
     const itemArr = addedItems;
-    setAddedItem([...itemArr, item]);
+    // item = {id:1, name:"test"}
+    setAddedItems([...itemArr, item]);
+    console.log (addedItems)
   }
 
   
   function removeItem(item) {
     const newItems = addedItems.filter((addedItem) => addedItem.id !== item.id);
-    setAddedItem(newItems);
+    setAddedItems(newItems);
   }
 
 
@@ -29,7 +31,7 @@ const Products = ({items, ShowAddProducts, setShowAddProducts, addedItems, searc
             click={setShowAddProducts}
             items={addedItems}
             removeItem={removeItem}
-            setAddedItem={setAddedItem}
+            setAddedItem={setAddedItems}
           />
         )}
         <CardBody

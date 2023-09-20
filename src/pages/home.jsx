@@ -25,13 +25,15 @@ useEffect(() => {
     console.count("hi");
   }, []);
 
-
+useEffect(() => {
+setNum (addedItems.length)
+}, [addedItems]);
 
 
 return (<div>
     <Search value={value} onChangeData={onChangeData}/>
     <Cart num={num} setshowCart={setshowCart}/>
-    <Products items={items} ShowAddProducts={ShowAddProducts} setShowAddProducts={setShowAddProducts} addedItems={addedItems} searchValue={value}/>
+    <Products items={items} ShowAddProducts={ShowAddProducts} setShowAddProducts={setShowAddProducts} addedItems={addedItems} searchValue={value} setAddedItems={setAddedItems}/>
     </div>)
 
 }
