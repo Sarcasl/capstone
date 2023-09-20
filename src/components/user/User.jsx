@@ -33,7 +33,11 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+
+//wrap this section in function
+
+function eventLister(loginForm, createAccountForm){
+document.addEventListener("DOMContentLoaded"), () => {
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
 
@@ -55,7 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
 
         setFormMessage(loginForm, "error", "Invalid username/password combination");
-    });
+    });}
+}
+//  
+
 
 
 //User input information
@@ -70,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             clearInputError(inputElement);
         });
     });
-});
+;
 
 
 export default User;
