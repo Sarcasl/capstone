@@ -3,17 +3,19 @@ import Cart from "../components/cart/Cart"
 import Search from "../components/search/Search"
 import Products from "../components/header/Products"
 
-const Home = () => {
+const Home = ({
+  setNum, ShowAddProducts, setShowAddProducts
+}) => {
 
 
 const [showCart, setshowCart] = useState(false);
-const [num, setNum] = useState(0);
+// const [num, setNum] = useState(0);
 
 const [value, setValue] = useState("")
 const onChangeData = (e) => {setValue(e.target.value)}
 
 const [items, setItems] = useState([])
-const [ShowAddProducts, setShowAddProducts]= useState(false);
+// const [ShowAddProducts, setShowAddProducts]= useState(false);
 
 const [addedItems, setAddedItems] = useState([])
 
@@ -31,8 +33,7 @@ setNum (addedItems.length)
 
 
 return (<div>
-    <Search value={value} onChangeData={onChangeData}/>
-    <Cart num={num} setshowCart={setShowAddProducts}/>
+    {/* <Cart num={num} setshowCart={setShowAddProducts}/> */}
     <Products items={items} ShowAddProducts={ShowAddProducts} setShowAddProducts={setShowAddProducts} addedItems={addedItems} searchValue={value} setAddedItems={setAddedItems}/>
     </div>)
 
