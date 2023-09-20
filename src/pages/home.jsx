@@ -32,7 +32,7 @@ setNum (addedItems.length)
 
 return (<div>
     <Search value={value} onChangeData={onChangeData}/>
-    <Cart num={num} setshowCart={setshowCart}/>
+    <Cart num={num} setshowCart={setShowAddProducts}/>
     <Products items={items} ShowAddProducts={ShowAddProducts} setShowAddProducts={setShowAddProducts} addedItems={addedItems} searchValue={value} setAddedItems={setAddedItems}/>
     </div>)
 
