@@ -7,22 +7,6 @@ import Cart from "../cart/Cart"
 
 
 const Header = ({items}) => {
-  // const [showAddProducts, setShowAddProducts] = useState(false);
-  // const [searchValue, setSearchValue] = useState("");
-  // const [addedItems, setAddedItem] = useState([]);
-
-  // function changingSearchData(e) {
-  //   setSearchValue(e.target.value);
-
-  // } 
-  // function addItem(item) {
-  //   item.addNumber = 1;
-  //   const itemArr = addedItems;
-  //   setAddedItem([...itemArr, item]);
-  // }
-
-  
-
 
 
 

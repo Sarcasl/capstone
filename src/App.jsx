@@ -7,9 +7,8 @@ import Cart from "./components/cartStatus/CartStatus"
 import Login from "./pages/Login"
 import Checkout from "./pages/Checkout"
 
-// import Customers from './pages/Customers';
+
 import NotFound from './components/NotFound';
-// import Customer from './pages/Customer';
 import Register from './pages/Register';
 import { baseUrl } from './shared';
 
