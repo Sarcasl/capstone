@@ -1,21 +1,20 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import {Link} from "react-router-dom"
-import Search from "../src/components/search/Search"
-import Cart from "../src/components/cart/Cart"
-import Login from "./pages/Login"
-import Checkout from "./pages/Checkout"
+import Search from "../components/search/Search"
+import Cart from "../components/cart/Cart"
+import Login from "../pages/Login"
+
 
 // import Customers from './pages/Customers';
-import NotFound from './components/NotFound';
+import NotFound from '../components/NotFound'
 // import Customer from './pages/Customer';
-import Register from './pages/Register';
-import { baseUrl } from './shared';
+import Register from '../pages/Register';
+import { baseUrl } from '../shared';
 
 
 
-import "./App.css";
+// import "./App.css";
 
 export const LoginContext = createContext();
 
@@ -27,7 +26,7 @@ const ThemeContext = createContext(null);
 
 
 
-const App = () => {
+const Checkout = () => {
   useEffect(() => {
     function refreshTokens() {
         if (localStorage.refresh) {
@@ -102,7 +101,7 @@ const [ShowAddProducts, setShowAddProducts]= useState(false);
 <div className="nav-right"></div>
   <Routes>
     <Route>
-  <Route path="/" element={<Home setNum ={setNum} ShowAddProducts ={ShowAddProducts} setShowAddProducts ={setShowAddProducts}/>}/>
+  {/* <Route path="/" element={<Home setNum ={setNum} ShowAddProducts ={ShowAddProducts} setShowAddProducts ={setShowAddProducts}/>}/> */}
   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
@@ -122,6 +121,4 @@ const [ShowAddProducts, setShowAddProducts]= useState(false);
   )};
 
 
-export default App; 
-
-
+export default Checkout; 

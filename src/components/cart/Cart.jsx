@@ -7,7 +7,7 @@ import "./Cart.css";
 const Cart = ({ num, setshowCart }) => {
   return (
     <button className="ui-change-btn" onClick={() => setshowCart(true)}>
-      You Added <span>{num}</span> {num <= 1 ? "item" : "items"}
+      Checkout <span>{num}</span> {num <= 1 ? "item" : "items"}
     </button>
   );
 };
