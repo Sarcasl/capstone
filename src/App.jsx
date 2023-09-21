@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import {Link} from "react-router-dom"
 import Search from "../src/components/search/Search"
-import Cart from "../src/components/cart/Cart"
+import Cart from "./components/cartStatus/CartStatus"
 import Login from "./pages/Login"
 import Checkout from "./pages/Checkout"
 
@@ -13,9 +13,9 @@ import NotFound from './components/NotFound';
 import Register from './pages/Register';
 import { baseUrl } from './shared';
 
-
-
 import "./App.css";
+
+
 
 export const LoginContext = createContext();
 
@@ -125,3 +125,5 @@ const [ShowAddProducts, setShowAddProducts]= useState(false);
 export default App; 
 
 
+//move browser router
+//indent lines

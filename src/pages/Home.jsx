@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import Cart from "../components/cart/Cart"
+import Cart from "../components/cartStatus/CartStatus"
 import Search from "../components/search/Search"
 import Products from "../components/header/Products"
 

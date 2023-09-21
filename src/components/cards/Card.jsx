@@ -12,7 +12,7 @@ const Card = ({ product, addItem, removeItem, addedItems }) => {
   }, [item]);
 
 
-  // console.log(item);
+
 //Image of products in cart
   return (
     <div className="card">

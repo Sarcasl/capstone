@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cart.css";
+import "./CartStatus.css";
 
 //setshowCart will be the center function that displays the cart
 //Amount of items listed on main page top right

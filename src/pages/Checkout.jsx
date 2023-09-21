@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Link} from "react-router-dom"
 import Search from "../components/search/Search"
-import Cart from "../components/cart/Cart"
+import Cart from "../components/cartStatus/CartStatus"
 import Login from "../pages/Login"
 
 
