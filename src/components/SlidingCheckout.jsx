@@ -1,19 +1,20 @@
-import React from "react";
-import CardList from "./CardList";
-import "./AddProducts.css";
-import { useRef } from "react";
-const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
-  const total = items
-    .reduce((pre, cur) => {
-      return pre + Number(cur.addNumber) * Number(cur.price);
+import { useEffect } from 'react'
+import CheckoutProduct from './CheckoutProduct'
+import { useOutletContext } from 'react-router-dom'
+const SlidingCheckout = () => {
+  const { prodState, cartState, sliderState } = useOutletContext()
+  const [cart, setCart] = cartState
+  const [products, setProducts] = prodState
+  const [slide, setSlide] = sliderState
+
+  const total = cart
+    .reduce((acc, prod) => {
+      return acc + Number(prod.qty) * Number(prod.price)
     }, 0)
-    .toFixed(2);
-  // let curDate = new Date();
-  // console.log(curDate);
-  const showDivRef = useRef(null);
+    .toFixed(2)
 
   return (
-    <div ref={showDivRef} className="addproducts__container">
+    <div className="addproducts__container">
       <div className="left-side">
         <div className="check-out-container">
           <div className="check-out-print">
@@ -29,12 +30,12 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
                 </tr>
               </thead>
               <tbody>
-                {items.map((item, i) => (
-                  <tr key={item.id}>
+                {cart.map((product, i) => (
+                  <tr key={product.id}>
                     <td>{i + 1}</td>
-                    <td>{item.title}</td>
-                    <td>${item.price}</td>
-                    <td>{item.addNumber}</td>
+                    <td>{product.title}</td>
+                    <td>${product.price}</td>
+                    <td>{product.qty}</td>
                   </tr>
                 ))}
               </tbody>
@@ -53,37 +54,26 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
         </div>
       </div>
 
-
       <div className="right-side">
         <div className="right-side-header">
           <h1>
-            Shopping <span className="total-items">{items.length}</span>
-            {items.length <= 1 ? " item" : " items"}
+            Shopping <span className="total-items">{cart.length}</span>
+            {cart.length <= 1 ? ' item' : ' items'}
           </h1>
           <button
             className="remove-item-btn"
             onClick={() => {
-              showDivRef.current.classList.add("animate");
-              setTimeout(() => click(false), 200);
-            }}
-          >
+              setSlide(false)
+            }}>
             ⌫
           </button>
         </div>
 
-
         <div className="right-side-body">
-          {items.map((item, i, itemsArr) => (
-            <CardList
-              key={item.id}
-              item={item}
-              removeItem={removeItem}
-              setAddedItem={setAddedItem}
-              itemsArr={itemsArr}
-            />
+          {cart.map((product, i) => (
+            <CheckoutProduct product={product} key={i} />
           ))}
         </div>
-
 
         <div className="right-side-footer">
           <div className="bar"></div>
@@ -97,16 +87,15 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
             <button
               className="check-out-btn"
               onClick={() => {
-                items.length >= 1 && print();
-              }}
-            >
+                cart.length >= 1 && print()
+              }}>
               Check Out
             </button>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddProducts;
+export default SlidingCheckout
