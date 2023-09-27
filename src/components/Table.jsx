@@ -1,24 +1,16 @@
-import React from "react";
-import CardList from "./CardList";
-import "./AddProducts.css";
-import { useRef } from "react";
-const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
-  const total = items
-    .reduce((pre, cur) => {
-      return pre + Number(cur.addNumber) * Number(cur.price);
-    }, 0)
-    .toFixed(2);
-  // let curDate = new Date();
-  // console.log(curDate);
-  const showDivRef = useRef(null);
+
+
+
+    // Checkout Table
+
+
 
   return (
-    <div ref={showDivRef} className="addproducts__container">
+    <div className="addproducts__container">
       <div className="left-side">
         <div className="check-out-container">
           <div className="check-out-print">
             <h1 className="check-out-title">Shopping</h1>
-            {/* <p>{curDate}</p> */}
             <table>
               <thead>
                 <tr>
@@ -29,12 +21,12 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
                 </tr>
               </thead>
               <tbody>
-                {items.map((item, i) => (
-                  <tr key={item.id}>
+                {cart.map((product, i) => (
+                  <tr key={product.id}>
                     <td>{i + 1}</td>
-                    <td>{item.title}</td>
-                    <td>${item.price}</td>
-                    <td>{item.addNumber}</td>
+                    <td>{product.title}</td>
+                    <td>${product.price}</td>
+                    <td>{product.qty}</td>
                   </tr>
                 ))}
               </tbody>
@@ -54,36 +46,37 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
       </div>
 
 
+
+
+
+
+
+
+
+
+
+
       <div className="right-side">
         <div className="right-side-header">
           <h1>
-            Shopping <span className="total-items">{items.length}</span>
-            {items.length <= 1 ? " item" : " items"}
+            Shopping <span className="total-items">{cart.length}</span>
+            {cart.length <= 1 ? ' item' : ' items'}
           </h1>
           <button
             className="remove-item-btn"
             onClick={() => {
-              showDivRef.current.classList.add("animate");
-              setTimeout(() => click(false), 200);
-            }}
-          >
+              setSlide(false)
+            }}>
             ⌫
           </button>
         </div>
 
-
         <div className="right-side-body">
-          {items.map((item, i, itemsArr) => (
-            <CardList
-              key={item.id}
-              item={item}
-              removeItem={removeItem}
-              setAddedItem={setAddedItem}
-              itemsArr={itemsArr}
-            />
+          {cart.map((product, i) => (
+            <CheckoutProduct product={product} key={i} />
           ))}
         </div>
-
+        {/* checkout function */}
 
         <div className="right-side-footer">
           <div className="bar"></div>
@@ -92,21 +85,19 @@ const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
             <h1>${total}</h1>
           </div>
 
-          {/* Check Out Button */}
+          {/* Check Out Button/Checkout Items */}
           <div className="check-out">
             <button
               className="check-out-btn"
               onClick={() => {
-                items.length >= 1 && print();
-              }}
-            >
+                cart.length >= 1 && print()
+              }}>
               Check Out
             </button>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
 
-export default AddProducts;
+

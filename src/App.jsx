@@ -1,128 +1,130 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import {Link} from "react-router-dom"
-import Search from "../src/components/search/Search"
-import Cart from "./components/cartStatus/CartStatus"
-import Login from "./pages/Login"
-import Checkout from "./pages/Checkout"
+import { Outlet, Link } from 'react-router-dom'
+import { baseUrl } from './shared'
 
-
-import NotFound from './components/NotFound';
-import Register from './pages/Register';
-import { baseUrl } from './shared';
-
-import "./App.css";
-
+import './stylesheets/app.css'
 
 
 export const LoginContext = createContext();
-
-
-
-
 const ThemeContext = createContext(null);
 
-
-
-
 const App = () => {
+  const [slide, setSlide] = useState(false)
+  const [search, setSearch] = useState('')
+  const [products, setProducts] = useState([])
+  const [cart, setCart] = useState([])
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
+  const [inputValue, setInputValue] = useState('')
+
+  const context = {
+    cartState: [cart, setCart],
+    searchState: [search, setSearch],
+    prodState: [products, setProducts],
+    sliderState: [slide, setSlide]
+  }
+
+  const handleKeypress = e => {         
+    if (e.keyCode === 13) 
+    {      handleSubmit();    }  };
+
   useEffect(() => {
     function refreshTokens() {
-        if (localStorage.refresh) {
-            const url = baseUrl + 'api/token/refresh/';
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    refresh: localStorage.refresh,
-                }),
-            })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-                    localStorage.access = data.access;
-                    localStorage.refresh = data.refresh;
-                    setLoggedIn(true);
-                });
-        }
+      if (localStorage.getItem('refresh')) {
+        const url = baseUrl + 'api/token/refresh/'
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            refresh: localStorage.getItem('refresh')
+          })
+        })
+          .then((response) => {
+            return response.json()
+          })
+          .then((data) => {
+            localStorage.setItem('access', data.access)
+            localStorage.setItem('refresh', data.refresh)
+            setLoggedIn(true)
+          })
+      }
     }
 
-    const minute = 1000 * 60;
-    refreshTokens();
-    setInterval(refreshTokens, minute * 3);
-}, []);
-
-const [loggedIn, setLoggedIn] = useState(
-    localStorage.access ? true : false
-);
-
-function changeLoggedIn(value) {
-    setLoggedIn(value);
-    if (value === false) {
-        localStorage.clear();
-    }
-}
-
-
-const [value, setValue] = useState("")
-const onChangeData = (e) => {setValue(e.target.value)}
-
-
-const [num, setNum] = useState(0);
-const [ShowAddProducts, setShowAddProducts]= useState(false);
-
-
-
-
-
-  return (
-<LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
- 
-<BrowserRouter>
-<ThemeContext.Provider>
-<div className="body__container"></div>
-
-
-
-
-<div className="nav">
-<Link to = "/">Home</Link>
-<Link to = "/login">Login/SignUp</Link>
-<Link to = "/checkout">Checkout</Link>
-<Search value={value} onChangeData={onChangeData}/>
-<Cart num={num} setshowCart={setShowAddProducts}/>
-</div>
-
-
-<div className="nav-right"></div>
-  <Routes>
-    <Route>
-  <Route path="/" element={<Home setNum ={setNum} ShowAddProducts ={ShowAddProducts} setShowAddProducts ={setShowAddProducts}/>}/>
-  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/404" element={<NotFound />} />
-                  <Route path="*" element={<NotFound />} />
-                  <Route path="/login" element={<div>Login</div>} />
-  </Route>
-  </Routes>
-  <div></div>
-</ThemeContext.Provider>
+    const minute = 1000 * 60
+    refreshTokens()
+    const i = setInterval(refreshTokens, minute * 3)
 
     
+    fetch('https://fakestoreapi.com/products/')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+   
+    return () => {
+      clearInterval(i)
+    }
+  }, [])
 
-</BrowserRouter>
-</LoginContext.Provider>
+  function changeLoggedIn(value) {
+    value ? setLoggedIn(value) : localStorage.clear()
+  }
 
-  )};
+  const onChangeData = (e) => {
+    setInputValue(e.target.value)
+  }
+
+  return (
+    <>
+  
+    <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
+      <div className="nav">
+        
+        <Link to="/">Home</Link>
+        {/* Login/Logout Form */}
+        {
+        loggedIn ?
+        <Link to="/login" onClick={() => {
+          localStorage.removeItem("token")
+          setLoggedIn(false)
+        }}>Logout</Link>:
+        <Link to="/login">Login</Link>
+      }
+        {/* <Link to="/checkout">Checkout</Link> */}
+
+{/* Searchbar */}
+        <input
+          className="search__input"
+          type="text"
+          placeholder="Enter product name"
+          value={inputValue}
+          onChange={onChangeData}
+        />
+
+        <button className="ui-change-btn" onClick={() => setSearch(inputValue)} 
+        onkeydown={handleKeypress}>
+
+          Search
+        </button>
+        
+
+{/* Checkout button */}
+        <button
+          className="ui-change-btn"
+          onClick={() => {
+            setSlide(true)
+          }}>
+          <Link to="/checkout">Checkout <span>{cart.length}</span> {cart.length === 1 ? 'Item' : 'Items'}</Link>
+        </button>
+      </div>
+      <Outlet context={context} />
+      </LoginContext.Provider>  
+    </>
 
 
-export default App; 
 
 
-//move browser router
-//indent lines
+  )
+}
+export default App
+
+

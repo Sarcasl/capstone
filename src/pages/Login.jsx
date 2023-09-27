@@ -1,9 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
-// import { baseUrl } from '../shared';
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../App';
+import { baseUrl } from '../shared';
+import '../stylesheets/account.css'
 
-export default function Login() {
+function Login() 
+
+{
     const [loggedIn, setLoggedIn] = useContext(LoginContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
@@ -11,9 +14,50 @@ export default function Login() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    function login(e) {
+
+    useEffect(() => {
+        function refreshTokens() {
+          if (localStorage.getItem('refresh')) {
+            const url = baseUrl + 'api/token/refresh/'
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                refresh: localStorage.getItem('refresh')
+              })
+            })
+              .then((response) => {
+                return response.json()
+              })
+              .then((data) => {
+                localStorage.setItem('access', data.access)
+                localStorage.setItem('refresh', data.refresh)
+                setLoggedIn(true)
+              })
+          }
+        }
+    
+        const minute = 1000 * 60
+        refreshTokens()
+        const i = setInterval(refreshTokens, minute * 3)
+    
+        
+        fetch('https://fakestoreapi.com/products/')
+          .then((res) => res.json())
+          .then((data) => setProducts(data))
+       
+        return () => {
+          clearInterval(i)
+        }
+      }, [])
+    
+
+
+    function appLogin(e) {
         e.preventDefault();
-        const url = baseUrl + 'api/token/';
+        const url = 'https://fakestoreapi.com/auth/login'
         fetch(url, {
             method: 'POST',
             headers: {
@@ -25,22 +69,26 @@ export default function Login() {
             }),
         })
             .then((response) => {
-                return response.json();
+
+
+    return response.json();
             })
             .then((data) => {
-                localStorage.setItem('access', data.access);
-                localStorage.setItem('refresh', data.refresh);
+                localStorage.setItem('token', data.token);
+                // localStorage.setItem('refresh', data.refresh);
                 setLoggedIn(true);
                 navigate(
                     location?.state?.previousUrl
                         ? location.state.previousUrl
-                        : '/customers'
+                        : '/'
                 );
             });
     }
 
+
+    
     return (
-        <form className="m-2 w-full max-w-sm" id="customer" onSubmit={login}>
+        <form className="m-2 w-full max-w-sm" id="customer" onSubmit={appLogin}>
             <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/4">
                     <label for="username">Username</label>
@@ -81,4 +129,15 @@ export default function Login() {
             </button>
         </form>
     );
+
+
+    
+    
+    
 }
+
+    
+
+
+
+export default Login;
