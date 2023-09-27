@@ -1,5 +1,4 @@
-// import SlidingCheckout from './SlideoutCheckout'
-import ProductCard from './ProductCard'
+import ProductCard from './ProductCards'
 import { useOutletContext } from 'react-router-dom'
 import '../stylesheets/cards.css'
 

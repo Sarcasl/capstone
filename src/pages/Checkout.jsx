@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, createContext, useContext } from "react";
+import { Outlet, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom'
-import CheckoutProduct from  '../components/CheckoutProduct';
+import CheckoutProduct from  '../components/CheckoutProducts';
 import '../stylesheets/checkout.css'
+
+
+export const LoginContext = createContext();
 
 function Checkout(){
     const { prodState, cartState, sliderState } = useOutletContext()
@@ -15,16 +19,31 @@ function Checkout(){
       .toFixed(2)
       
    
+      const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
+      const [inputValue, setInputValue] = useState('')
+    
 
 
-    return (
-      
+      function changeLoggedIn(value) {
+        value ? setLoggedIn(value) : localStorage.clear()
+      }
 
+    
+    
+    
+    
+    
+    
+
+
+    return(
+      <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
         <div className="right-side">
         <div className="right-side-header">
           <h1>
-            Shopping <span className="total-items">{cart.length}</span>
-            {cart.length <= 1 ? ' item' : ' items'}
+            <span className="total-items">{cart.length}</span>
+            {cart.length <= 1 ? ' Item ' : '   Items '}
+            In Cart
           </h1>
           <button
             className="remove-item-btn"
@@ -52,17 +71,20 @@ function Checkout(){
 
           {/* Check Out Button/Checkout Items */}
           <div className="check-out">
-            <button
-              className="check-out-btn"
-              onClick={() => {
-                cart.length >= 1 && print()
-              }}>
-              Check Out
-            </button>
+          <button
+          className="check-out"
+          onClick={() => {
+            setSlide(true)
+          }}>
+          <Link to="/success">Checkout</Link>
+        </button>
           </div>
         </div>
       </div>
+      </LoginContext.Provider>
     )   
+    
 }
 
 export default Checkout;
+

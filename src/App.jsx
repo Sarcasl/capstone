@@ -1,18 +1,28 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { Outlet, Link } from 'react-router-dom'
 import { baseUrl } from './shared'
-
+// import { useTable, useSortBy } from './table'
 import './stylesheets/app.css'
+
+
 
 
 export const LoginContext = createContext();
 const ThemeContext = createContext(null);
 
+// Persistant Cart
+const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
+
 const App = () => {
+  const [cart, setCart] = useState(cartFromLocalStorage)
   const [slide, setSlide] = useState(false)
   const [search, setSearch] = useState('')
   const [products, setProducts] = useState([])
-  const [cart, setCart] = useState([])
+  // Persistant Cart
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
   const [inputValue, setInputValue] = useState('')
 
@@ -75,7 +85,6 @@ const App = () => {
 
   return (
     <>
-  
     <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
       <div className="nav">
         
@@ -101,8 +110,7 @@ const App = () => {
         />
 
         <button className="ui-change-btn" onClick={() => setSearch(inputValue)} 
-        onkeydown={handleKeypress}>
-
+        onKeyDown={handleKeypress}>
           Search
         </button>
         
@@ -113,15 +121,12 @@ const App = () => {
           onClick={() => {
             setSlide(true)
           }}>
-          <Link to="/checkout">Checkout <span>{cart.length}</span> {cart.length === 1 ? 'Item' : 'Items'}</Link>
+          <Link to="/checkout">Checkout<span>{cart.length}</span> {cart.length === 1 ? 'Item' : 'Items'}</Link>
         </button>
       </div>
       <Outlet context={context} />
       </LoginContext.Provider>  
     </>
-
-
-
 
   )
 }
