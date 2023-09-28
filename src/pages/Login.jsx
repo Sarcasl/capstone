@@ -10,6 +10,9 @@ function Login()
     const [loggedIn, setLoggedIn] = useContext(LoginContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+    const [slide, setSlide] = useState(false)
+    const [search, setSearch] = useState('')
+    const [products, setProducts] = useState([])
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -75,7 +78,6 @@ function Login()
             })
             .then((data) => {
                 localStorage.setItem('token', data.token);
-                // localStorage.setItem('refresh', data.refresh);
                 setLoggedIn(true);
                 navigate(
                     location?.state?.previousUrl

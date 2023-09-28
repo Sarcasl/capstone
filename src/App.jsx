@@ -13,11 +13,21 @@ const ThemeContext = createContext(null);
 // Persistant Cart
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
 
+
 const App = () => {
   const [cart, setCart] = useState(cartFromLocalStorage)
   const [slide, setSlide] = useState(false)
   const [search, setSearch] = useState('')
   const [products, setProducts] = useState([])
+
+  const [list, setList] = useState([]);
+  const [category, setCategory] = useState('');
+  const [sort, setSort] = useState('');
+
+
+
+
+
   // Persistant Cart
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -66,14 +76,14 @@ const App = () => {
     const i = setInterval(refreshTokens, minute * 3)
 
     
-    fetch('https://fakestoreapi.com/products/')
+    fetch(`https://fakestoreapi.com/products${category}${sort}`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
    
     return () => {
       clearInterval(i)
     }
-  }, [])
+  }, [category, sort]);
 
   function changeLoggedIn(value) {
     value ? setLoggedIn(value) : localStorage.clear()
@@ -96,9 +106,23 @@ const App = () => {
           localStorage.removeItem("token")
           setLoggedIn(false)
         }}>Logout</Link>:
-        <Link to="/login">Login</Link>
+        <Link to="/login">Login</Link> 
       }
-        {/* <Link to="/checkout">Checkout</Link> */}
+
+        
+    
+        <div className='dropdown'>
+            <h4>Select Category</h4>
+            <select value={category} onChange={(e) => { setCategory(`/category/${e.target.value}`) }}>
+                <option></option>
+                <option>electronics</option>
+                <option>jewelery</option>
+                <option>men's clothing</option>
+                <option>women's clothing</option>
+            </select>
+        </div>
+    
+
 
 {/* Searchbar */}
         <input
@@ -109,7 +133,7 @@ const App = () => {
           onChange={onChangeData}
         />
 
-        <button className="ui-change-btn" onClick={() => setSearch(inputValue)} 
+        <button type="submit" className="ui-change-btn" onClick={() => setSearch(inputValue)} 
         onKeyDown={handleKeypress}>
           Search
         </button>
