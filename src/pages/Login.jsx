@@ -57,7 +57,7 @@ function Login()
       }, [])
     
 
-
+// Login and Logout Function
     function appLogin(e) {
         e.preventDefault();
         const url = 'https://fakestoreapi.com/auth/login'
@@ -88,7 +88,7 @@ function Login()
     }
 
 
-    
+// Login CSS    
     return (
         <form className="m-2 w-full max-w-sm" id="customer" onSubmit={appLogin}>
             <div className="md:flex md:items-center mb-6">

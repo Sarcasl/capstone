@@ -3,17 +3,33 @@ import { useOutletContext } from 'react-router-dom'
 import '../stylesheets/cards.css'
 
 
-const CardList = ({ product }) => {
+
+
+
+
+const checkoutProducts = ({ product }) => {
   const { cartState } = useOutletContext()
 
   const [cart, setCart] = cartState
 
+  const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
+    const reciept = items
+    .reduce((pre, cur) => {
+      return pre + Number(cur.addNumber) * Number(cur.price);
+    }, 0)
+    .toFixed(2);
+  // let curDate = new Date();
+  // console.log(curDate);
+  const showDivRef = useRef(null);
+  }
 
   function removeItem(product) {
     const newCart = cart.filter((cartItem) => cartItem.id !== product.id)
     setCart(newCart)
   }
 
+
+  
 
   function changeQty(product, qty,e) {
     e.preventDefault()
@@ -73,4 +89,4 @@ const CardList = ({ product }) => {
   )
 }
 
-export default CardList
+export default checkoutProducts;

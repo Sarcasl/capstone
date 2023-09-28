@@ -1,5 +1,4 @@
 import React from 'react'
-// import '../App.css';
 
 function Dropdown({ category, setCategory }) {
     return (

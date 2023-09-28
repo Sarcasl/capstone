@@ -1,12 +1,13 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { Outlet, Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
+// import { Outlet, Link } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom'
 import CheckoutProduct from  '../components/CheckoutProducts';
 import '../stylesheets/checkout.css'
 
 
 export const LoginContext = createContext();
+
 
 function Checkout(){
     const { prodState, cartState, sliderState } = useOutletContext()
@@ -28,23 +29,28 @@ function Checkout(){
         value ? setLoggedIn(value) : localStorage.clear()
       }
 
+      // Items function
+      const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
+        const total = items
+          .reduce((pre, cur) => {
+            return pre + Number(cur.addNumber) * Number(cur.price);
+          }, 0)
+          .toFixed(2);
+        }
     
-    
-    
-    
-    
-    
-
 
     return(
       <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
         <div className="right-side">
         <div className="right-side-header">
+
+        {/* Items in cart */}
           <h1>
             <span className="total-items">{cart.length}</span>
             {cart.length <= 1 ? ' Item ' : '   Items '}
             In Cart
           </h1>
+
           <button
             className="remove-item-btn"
             onClick={() => {
@@ -52,6 +58,7 @@ function Checkout(){
             }}>
             ⌫
           </button>
+          
         </div>
 
         <div className="right-side-body">
@@ -60,25 +67,25 @@ function Checkout(){
           ))}
         </div>
 
-        {/* checkout function */}
+        {/* Total */}
         <div className="right-side-footer">
           <div className="bar"></div>
           <div className="footer-head">
-            <h4>Total :</h4>
+            <h1>Total:</h1>
             <h1>${total}</h1>
           </div>
 
 
-          {/* Check Out Button/Checkout Items */}
-         
+          {/* Checkout Button*/}         
           <div className="check-out">
-          <button
-          className="check-out"
-          onClick={() => {
-            setSlide(true)
-          }}>
-          Checkout
-        </button>
+            <button
+              className="check-out-btn"
+              onClick={() => {
+                items.length >= 1 && print();
+              }}
+          >
+              Checkout
+            </button>
           </div>
         </div>
       </div>

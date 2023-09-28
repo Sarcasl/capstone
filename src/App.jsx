@@ -4,7 +4,6 @@ import { baseUrl } from './shared'
 import Sort from './Components/Sort';
 import Dropdown from './Components/Dropdown';
 
-// import { useTable, useSortBy } from './table'
 import './stylesheets/app.css'
 
 
@@ -16,20 +15,16 @@ const ThemeContext = createContext(null);
 // Persistant Cart
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
 
-
+// Fuctions
 const App = () => {
+  const [list, setList] = useState([]);
+  const [category, setCategory] = useState('');
+  const [sort, setSort] = useState('');
   const [cart, setCart] = useState(cartFromLocalStorage)
   const [slide, setSlide] = useState(false)
   const [search, setSearch] = useState('')
   const [products, setProducts] = useState([])
-
-  const [list, setList] = useState([]);
-  const [category, setCategory] = useState('');
-  const [sort, setSort] = useState('');
-
-
-
-
+  
 
   // Persistant Cart
   useEffect(() => {
@@ -78,7 +73,7 @@ const App = () => {
     refreshTokens()
     const i = setInterval(refreshTokens, minute * 3)
 
-    
+    //FakeStoreAPI fetch
     fetch(`https://fakestoreapi.com/products${category}${sort}`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
@@ -113,20 +108,18 @@ const App = () => {
       }
 
 
-
+{/* Dropdown filter menu */}
 <div className="dropDown">
                 <Dropdown category={category} setCategory={setCategory} /> 
             </div>
-            
 
+{/* Sort Items */}
 <div className="sort">
                 <Sort sort={sort} setSort={setSort} />
             </div>
 
-
-
-            
-    
+        
+{/* Searchbar */}
 <div className="searchbar">
 <h4>Global Search</h4>
 <input
@@ -161,9 +154,7 @@ placeholder="Search..."
             </div>
 
        
-        
-
-{/* Checkout button */}
+{/* Cart Button */}
         <button
           className="ui-change-btn"
           onClick={() => {
