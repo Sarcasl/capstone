@@ -24,7 +24,7 @@
   }
   
   .body__container {
-    width: 80%;
+    width: 80vw;
     margin: 1rem auto;
     border-radius: 0.5rem;
     padding: 1rem;
@@ -76,7 +76,7 @@ header {
 /* media queries */
 @media screen and (max-width: 1040px) {
     .body__container {
-      width: 95%;
+      width: 95vw;
     }
     .nav {
       flex-direction: column;
@@ -94,7 +94,7 @@ header {
   }
   @media screen and (max-width: 400px) {
     .body__container {
-      width: 100%;
+      width: 100vw;
     }
     .nav-right {
       flex-direction: column;

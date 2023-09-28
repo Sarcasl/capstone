@@ -81,7 +81,7 @@ function Checkout(){
             <button
               className="check-out-btn"
               onClick={() => {
-                items.length >= 1 && print();
+                cart.length >= 1 && print();
               }}
           >
               Checkout
