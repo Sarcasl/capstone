@@ -96,15 +96,15 @@ const App = () => {
     <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
       <div className="nav">
         
-        <Link to="/">Home</Link>
+        <Link to="/">Storefront</Link>
         {/* Login/Logout Form */}
         {
         loggedIn ?
         <Link to="/login" onClick={() => {
           localStorage.removeItem("token")
           setLoggedIn(false)
-        }}>Logout</Link>:
-        <Link to="/login">Login</Link> 
+        }}>Sign Out</Link>:
+        <Link to="/login">Sign In</Link> 
       }
 
 
@@ -115,7 +115,7 @@ const App = () => {
 
 {/* Sort Items */}
 <div className="sort">
-                <Sort sort={sort} setSort={setSort} />
+                <Sort Sort={sort} setSort={setSort} />
             </div>
 
         
@@ -127,8 +127,6 @@ type='text'
 placeholder="Search..."
   onChange={(e) => setSearch(e.target.value)}
   />
-
-
                 {list &&
                     list.filter((value) => {
                         if (search === '') {
@@ -149,8 +147,7 @@ placeholder="Search..."
                                     <p>{`${item.description}`}</p>
                                 </div>
                             );
-                        })}
-                        
+                        })}     
             </div>
 
        

@@ -3,7 +3,6 @@ import React from 'react'
 function Sort({ sort, setSort }) {
     return (
         <div className='dropdown'>
-            <h4>Product Sort</h4>
             <select value={sort} onChange={(e) => { setSort(`?sort=${e.target.value}`) }}>
                 <option></option>
                 <option>asc</option>
