@@ -2,8 +2,8 @@ import Products from './components/Products'
 import App from './App'
 import Login from './pages/Login'
 import Checkout from './pages/Checkout'
-import Success from './pages/Success'
-import Dropdown from'./pages/Dropdown'
+
+
 
 
 export const routes = [
@@ -22,14 +22,6 @@ export const routes = [
       {
         path: '/login',
         element: <Login />
-      },
-      {
-        path: '/success',
-        element: <Success />
-      },
-      {
-        path: '/dropdown',
-        element: <Dropdown />
       },
     ]
   }

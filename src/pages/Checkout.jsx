@@ -70,18 +70,20 @@ function Checkout(){
 
 
           {/* Check Out Button/Checkout Items */}
+         
           <div className="check-out">
           <button
           className="check-out"
           onClick={() => {
             setSlide(true)
           }}>
-          <Link to="/success">Checkout</Link>
+          Checkout
         </button>
           </div>
         </div>
       </div>
       </LoginContext.Provider>
+      
     )   
     
 }

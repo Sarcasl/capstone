@@ -1,6 +1,9 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { Outlet, Link } from 'react-router-dom'
 import { baseUrl } from './shared'
+import Sort from './Components/Sort';
+import Dropdown from './Components/Dropdown';
+
 // import { useTable, useSortBy } from './table'
 import './stylesheets/app.css'
 
@@ -109,34 +112,55 @@ const App = () => {
         <Link to="/login">Login</Link> 
       }
 
-        
+
+
+<div className="dropDown">
+                <Dropdown category={category} setCategory={setCategory} /> 
+            </div>
+            
+
+<div className="sort">
+                <Sort sort={sort} setSort={setSort} />
+            </div>
+
+
+
+            
     
-        <div className='dropdown'>
-            <h4>Select Category</h4>
-            <select value={category} onChange={(e) => { setCategory(`/category/${e.target.value}`) }}>
-                <option></option>
-                <option>electronics</option>
-                <option>jewelery</option>
-                <option>men's clothing</option>
-                <option>women's clothing</option>
-            </select>
-        </div>
-    
+<div className="searchbar">
+<h4>Global Search</h4>
+<input
+type='text'
+placeholder="Search..."
+  onChange={(e) => setSearch(e.target.value)}
+  />
 
 
-{/* Searchbar */}
-        <input
-          className="search__input"
-          type="text"
-          placeholder="Enter product name"
-          value={inputValue}
-          onChange={onChangeData}
-        />
+                {list &&
+                    list.filter((value) => {
+                        if (search === '') {
+                            return value
+                        } else if (value.title.toLowerCase().includes(search.toLowerCase())) {
+                            return value
+                        } else if (value.category.includes({ category })) {
+                            return value
+                        }
+                    })
+                        .map((item) => {
+                            return (
+                                <div key={item.id} className="searchbar">
+                                    <img className="img" src={item.image} alt={item.title} />
+                                    <h3>{item.title}</h3>
+                                    <p>{item.category}</p>
+                                    <span>{item.price} ${" "}</span>
+                                    <p>{`${item.description}`}</p>
+                                </div>
+                            );
+                        })}
+                        
+            </div>
 
-        <button type="submit" className="ui-change-btn" onClick={() => setSearch(inputValue)} 
-        onKeyDown={handleKeypress}>
-          Search
-        </button>
+       
         
 
 {/* Checkout button */}

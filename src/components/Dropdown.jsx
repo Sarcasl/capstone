@@ -1,5 +1,5 @@
 import React from 'react'
-import '../stylesheets/account.css'
+// import '../App.css';
 
 function Dropdown({ category, setCategory }) {
     return (
