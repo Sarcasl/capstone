@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import { Outlet, Link } from 'react-router-dom'
 import { baseUrl } from './shared'
 import Sort from './Components/Sort';
-import Dropdown from './Components/Dropdown';
+import ProductGroup from './components/ProductGroup';
 
 import './stylesheets/app.css'
 
@@ -110,7 +110,7 @@ const App = () => {
 
 {/* Dropdown filter menu */}
 <div className="dropDown">
-                <Dropdown category={category} setCategory={setCategory} /> 
+                <ProductGroup category={category} setCategory={setCategory} /> 
             </div>
 
 {/* Sort Items */}
@@ -121,7 +121,7 @@ const App = () => {
         
 {/* Searchbar */}
 <div className="searchbar">
-<h4>Global Search</h4>
+<h4>Search</h4>
 <input
 type='text'
 placeholder="Search..."

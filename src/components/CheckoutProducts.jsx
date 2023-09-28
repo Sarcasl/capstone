@@ -3,10 +3,6 @@ import { useOutletContext } from 'react-router-dom'
 import '../stylesheets/cards.css'
 
 
-
-
-
-
 const checkoutProducts = ({ product }) => {
   const { cartState } = useOutletContext()
 
@@ -18,8 +14,7 @@ const checkoutProducts = ({ product }) => {
       return pre + Number(cur.addNumber) * Number(cur.price);
     }, 0)
     .toFixed(2);
-  // let curDate = new Date();
-  // console.log(curDate);
+
   const showDivRef = useRef(null);
   }
 

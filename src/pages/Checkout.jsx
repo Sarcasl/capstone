@@ -1,8 +1,7 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
-// import { Outlet, Link } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, createContext, useContext } from "react"
+import { useRef } from "react";
 import { useOutletContext } from 'react-router-dom'
-import CheckoutProduct from  '../components/CheckoutProducts';
+import CheckoutProduct from  '../components/CheckoutProducts'
 import '../stylesheets/checkout.css'
 
 
@@ -23,7 +22,7 @@ function Checkout(){
       const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
       const [inputValue, setInputValue] = useState('')
     
-
+      const showDivRef = useRef(null);
 
       function changeLoggedIn(value) {
         value ? setLoggedIn(value) : localStorage.clear()
@@ -51,6 +50,7 @@ function Checkout(){
             In Cart
           </h1>
 
+        {/* Clear Cart */}
           <button
             className="remove-item-btn"
             onClick={() => {
@@ -89,6 +89,13 @@ function Checkout(){
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
       </LoginContext.Provider>
       
     )   

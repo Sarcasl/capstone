@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Dropdown({ category, setCategory }) {
+function productGroup ({ category, setCategory }) {
     return (
-        <div className='dropdown'>
+        <div className='productGroup'>
             <h4>Select Category</h4>
             <select value={category} onChange={(e) => { setCategory(`/category/${e.target.value}`) }}>
                 <option></option>
@@ -15,4 +15,4 @@ function Dropdown({ category, setCategory }) {
     )
 }
 
-export default Dropdown;
+export default productGroup;
