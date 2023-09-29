@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Sort = (sort, setsort) => {
+function Sort({ sort, setSort }) {
     return (
         <div className='dropdown'>
             <h4>Sort</h4>
