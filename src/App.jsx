@@ -10,7 +10,7 @@ import './stylesheets/app.css'
 
 
 export const LoginContext = createContext();
-const ThemeContext = createContext(null);
+// const ThemeContext = createContext(null);
 
 // Persistant Cart
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
