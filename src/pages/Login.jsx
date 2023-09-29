@@ -55,7 +55,7 @@ function Login() {
     }, [])
 
 
-    // Login and Logout Function
+// Login and Logout Function
     function appLogin(e) {
         e.preventDefault();
         const url = 'https://fakestoreapi.com/auth/login'
@@ -128,15 +128,6 @@ function Login() {
             </button>
         </form>
     );
-
-
-
-
-
 }
-
-
-
-
 
 export default Login;

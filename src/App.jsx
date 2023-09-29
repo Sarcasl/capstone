@@ -5,7 +5,6 @@ import Sort from './components/Sort';
 import ProductGroup from './components/ProductGroup';
 import './stylesheets/app.css'
 
-
 export const LoginContext = createContext();
 
 // Fuctions
@@ -33,11 +32,12 @@ const App = () => {
 
   }, []
   )
-  // Persistant Cart
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+
+// Login
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
   const [inputValue, setInputValue] = useState('')
 
@@ -80,7 +80,7 @@ const App = () => {
     refreshTokens()
     const i = setInterval(refreshTokens, minute * 3)
 
-    //FakeStoreAPI fetch
+  //FakeStoreAPI Fetch
     fetch(`https://fakestoreapi.com/products${category}${sort}`)
       .then((res) => res.json())
       .then((data) => setProducts(data))

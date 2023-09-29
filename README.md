@@ -1,4 +1,4 @@
 Capstone Project
 
-Netlify Link
+Netlify Link:
 https://endearing-kitsune-ac414e.netlify.app/
