@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { Outlet, Link } from 'react-router-dom'
 import { baseUrl } from './shared'
-import Sort from './Components/Sort';
+import Sort from './components/Sort';
 import ProductGroup from './components/ProductGroup';
 
 import './stylesheets/app.css'
