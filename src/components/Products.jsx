@@ -13,7 +13,6 @@ const Products = () => {
 
   return (
     <div className="body__container">
-      {/* {!!slide && <SlidingCheckout />} */}
       <div className="card__body">
         {!!itemsFilter.length &&
           itemsFilter.map((product, i) => <ProductCard product={product} key={i} />)}
