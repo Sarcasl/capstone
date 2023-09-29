@@ -13,19 +13,32 @@ export const LoginContext = createContext();
 // const ThemeContext = createContext(null);
 
 // Persistant Cart
-const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
+// const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
 
 // Fuctions
 const App = () => {
   const [list, setList] = useState([]);
   const [category, setCategory] = useState('');
   const [sort, setSort] = useState('');
-  const [cart, setCart] = useState(cartFromLocalStorage)
+  const [cart, setCart] = useState([])
   const [slide, setSlide] = useState(false)
   const [search, setSearch] = useState('')
   const [products, setProducts] = useState([])
-  
 
+  useEffect  (() => {
+
+    const localCart = async () => {
+
+    const cartFromLocalStorage = await JSON.parse(localStorage.getItem('cart'))
+    if (cartFromLocalStorage && cartFromLocalStorage.length>0){
+      setCart(cartFromLocalStorage)
+    }
+  }
+
+  localCart () 
+
+  },[]
+  )
   // Persistant Cart
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
