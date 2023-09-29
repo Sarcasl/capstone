@@ -10,12 +10,12 @@ const checkoutProducts = ({ product }) => {
 
   const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
     const reciept = items
-    .reduce((pre, cur) => {
-      return pre + Number(cur.addNumber) * Number(cur.price);
-    }, 0)
-    .toFixed(2);
+      .reduce((pre, cur) => {
+        return pre + Number(cur.addNumber) * Number(cur.price);
+      }, 0)
+      .toFixed(2);
 
-  const showDivRef = useRef(null);
+    const showDivRef = useRef(null);
   }
 
   function removeItem(product) {
@@ -24,9 +24,9 @@ const checkoutProducts = ({ product }) => {
   }
 
 
-  
 
-  function changeQty(product, qty,e) {
+
+  function changeQty(product, qty, e) {
     e.preventDefault()
     if (qty >= 1) {
       const newCart = cart.reduce((acc, cProd) => {
@@ -65,8 +65,8 @@ const checkoutProducts = ({ product }) => {
           <button
             className="plus-btn"
             onClick={(e) => {
-              
-              changeQty(product, product.qty + 1,e)
+
+              changeQty(product, product.qty + 1, e)
             }}>
             +
           </button>
@@ -74,7 +74,7 @@ const checkoutProducts = ({ product }) => {
           <button
             className="minus-btn"
             onClick={(e) => {
-              changeQty(product, product.qty - 1,e)
+              changeQty(product, product.qty - 1, e)
             }}>
             -
           </button>

@@ -3,17 +3,10 @@ import { Outlet, Link } from 'react-router-dom'
 import { baseUrl } from './shared'
 import Sort from './components/Sort';
 import ProductGroup from './components/ProductGroup';
-
 import './stylesheets/app.css'
 
 
-
-
 export const LoginContext = createContext();
-// const ThemeContext = createContext(null);
-
-// Persistant Cart
-// const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
 
 // Fuctions
 const App = () => {
@@ -25,19 +18,20 @@ const App = () => {
   const [search, setSearch] = useState('')
   const [products, setProducts] = useState([])
 
-  useEffect  (() => {
+  // Persistant Cart
+  useEffect(() => {
 
     const localCart = async () => {
 
-    const cartFromLocalStorage = await JSON.parse(localStorage.getItem('cart'))
-    if (cartFromLocalStorage && cartFromLocalStorage.length>0){
-      setCart(cartFromLocalStorage)
+      const cartFromLocalStorage = await JSON.parse(localStorage.getItem('cart'))
+      if (cartFromLocalStorage && cartFromLocalStorage.length > 0) {
+        setCart(cartFromLocalStorage)
+      }
     }
-  }
 
-  localCart () 
+    localCart()
 
-  },[]
+  }, []
   )
   // Persistant Cart
   useEffect(() => {
@@ -54,9 +48,9 @@ const App = () => {
     sliderState: [slide, setSlide]
   }
 
-  const handleKeypress = e => {         
-    if (e.keyCode === 13) 
-    {      handleSubmit();    }  };
+  const handleKeypress = e => {
+    if (e.keyCode === 13) { handleSubmit(); }
+  };
 
   useEffect(() => {
     function refreshTokens() {
@@ -90,7 +84,7 @@ const App = () => {
     fetch(`https://fakestoreapi.com/products${category}${sort}`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
-   
+
     return () => {
       clearInterval(i)
     }
@@ -106,75 +100,75 @@ const App = () => {
 
   return (
     <>
-    <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
-      <div className="nav">
-        
-        <Link to="/">Storefront</Link>
-        {/* Login/Logout Form */}
-        {
-        loggedIn ?
-        <Link to="/login" onClick={() => {
-          localStorage.removeItem("token")
-          setLoggedIn(false)
-        }}>Sign Out</Link>:
-        <Link to="/login">Sign In</Link> 
-      }
+      <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
+        <div className="nav">
+
+          <Link to="/">Storefront</Link>
+          {/* Login/Logout Form */}
+          {
+            loggedIn ?
+              <Link to="/login" onClick={() => {
+                localStorage.removeItem("token")
+                setLoggedIn(false)
+              }}>Sign Out</Link> :
+              <Link to="/login">Sign In</Link>
+          }
 
 
-{/* Dropdown filter menu */}
-<div className="dropDown">
-                <ProductGroup category={category} setCategory={setCategory} /> 
-            </div>
+          {/* Dropdown filter menu */}
+          <div className="dropDown">
+            <ProductGroup category={category} setCategory={setCategory} />
+          </div>
 
-{/* Sort Items */}
-<div className="sort">
-                <Sort Sort={sort} setSort={setSort} />
-            </div>
+          {/* Sort Items */}
+          <div className="sort">
+            <Sort Sort={sort} setSort={setSort} />
+          </div>
 
-        
-{/* Searchbar */}
-<div className="searchbar">
-<h4>Search</h4>
-<input
-type='text'
-placeholder="Search..."
-  onChange={(e) => setSearch(e.target.value)}
-  />
-                {list &&
-                    list.filter((value) => {
-                        if (search === '') {
-                            return value
-                        } else if (value.title.toLowerCase().includes(search.toLowerCase())) {
-                            return value
-                        } else if (value.category.includes({ category })) {
-                            return value
-                        }
-                    })
-                        .map((item) => {
-                            return (
-                                <div key={item.id} className="searchbar">
-                                    <img className="img" src={item.image} alt={item.title} />
-                                    <h3>{item.title}</h3>
-                                    <p>{item.category}</p>
-                                    <span>{item.price} ${" "}</span>
-                                    <p>{`${item.description}`}</p>
-                                </div>
-                            );
-                        })}     
-            </div>
 
-       
-{/* Cart Button */}
-        <button
-          className="ui-change-btn"
-          onClick={() => {
-            setSlide(true)
-          }}>
-          <Link to="/checkout">Checkout<span>{cart.length}</span> {cart.length === 1 ? 'Item' : 'Items'}</Link>
-        </button>
-      </div>
-      <Outlet context={context} />
-      </LoginContext.Provider>  
+          {/* Searchbar */}
+          <div className="searchbar">
+            <h4>Search</h4>
+            <input
+              type='text'
+              placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {list &&
+              list.filter((value) => {
+                if (search === '') {
+                  return value
+                } else if (value.title.toLowerCase().includes(search.toLowerCase())) {
+                  return value
+                } else if (value.category.includes({ category })) {
+                  return value
+                }
+              })
+                .map((item) => {
+                  return (
+                    <div key={item.id} className="searchbar">
+                      <img className="img" src={item.image} alt={item.title} />
+                      <h3>{item.title}</h3>
+                      <p>{item.category}</p>
+                      <span>{item.price} ${" "}</span>
+                      <p>{`${item.description}`}</p>
+                    </div>
+                  );
+                })}
+          </div>
+
+
+          {/* Cart Button */}
+          <button
+            className="ui-change-btn"
+            onClick={() => {
+              setSlide(true)
+            }}>
+            <Link to="/checkout">Checkout<span>{cart.length}</span> {cart.length === 1 ? 'Item' : 'Items'}</Link>
+          </button>
+        </div>
+        <Outlet context={context} />
+      </LoginContext.Provider>
     </>
 
   )

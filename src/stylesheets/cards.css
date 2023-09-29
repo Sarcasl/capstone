@@ -1,241 +1,279 @@
 /* Card List */
 .card-list-body {
-    border: 2px solid var(--softer-color);
-    padding: 1rem;
-    margin-bottom: 2rem;
-    border-radius: 0.5rem;
-    position: relative;
-  }
-  .card-list-img {
-    width: 3rem;
-    margin-top: -5rem;
-  }
-  .card-list-add-minus-body {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .card-list-add-minus-body p {
-    margin: 0;
-  }
-  .plus-items-minus {
-    display: flex;
-  }
-  .plus-btn,
-  .minus-btn,
-  .num-of-items {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-white);
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    min-width: 30px;
-    min-height: 20px;
-    display: inline-block;
-    text-align: center;
-    padding: 0.3rem 0.5rem;
-    transition: 0.2s;
-  }
-  .plus-btn,
-  .minus-btn {
-    cursor: pointer;
-  }
-  .plus-btn {
-    border-radius: 0.3rem 0 0 0.3rem;
-  }
-  .plus-btn:hover {
-    background-color: var(--color-waring);
-  }
-  .minus-btn {
-    border-radius: 0 0.3rem 0.3rem 0;
-  }
-  .minus-btn:hover {
-    background-color: var(--color-danger);
-  }
-  .delete-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: var(--color-white);
-    border: 1px solid var(--color-danger);
-    color: var(--color-danger);
-    border-radius: 0.3rem;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .delete-btn:hover {
-    color: var(--color-white);
-    background-color: var(--color-danger);
-  }
-  /* Card List End */
-  
-  /* Card Body Start */
-  .card__body {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem;
-    margin-top:20vh;
-  }
-  /* Card Body End */
-  
+  border: 2px solid var(--softer-color);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
 
-  /* Card Start */
-  .card {
-    /* border: 1px solid var(--softer-color); */
-    box-shadow: 1px 1px 5px var(--softer-color);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .card__img {
-    width: 30%;
-  }
-  .card p {
-    color: var(--soft-color);
-  }
-  .card h4,
-  p {
-    margin: 0.5rem auto;
-  }
-  .card h2 {
-    text-decoration: underline;
-  }
-  .card:hover {
-    box-shadow: 0px 0px 10px var(--softer-color);
-    transform: scale(1.01);
-  }
-  .card-price-add {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .add-item-btn,
-  .remove-item-btn {
-    width: fit-content;
-    padding: 0.5rem 1rem;
-    display: block;
-    font-size: 1rem;
-    background-color: var(--color-white);
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
-  .remove-item-btn {
-    border-color: var(--color-danger);
-    color: var(--color-danger);
-  }
-  .add-item-btn:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-  }
-  .remove-item-btn:hover {
-    background-color: var(--color-danger);
-    color: var(--color-white);
-  }
-  /* Card End */
-  
-  
-  
-  /* Add Products Start */
-  .addproducts__container {
-    /* height: 100vh; */
-    position: fixed;
-  
-    width: 100%;
-    top: 0;
-    right: 0;
-    display: flex;
-    z-index: 2;
-    animation: showhide 0.2s;
-  }
-  .animate {
-    animation: hideshow 0.2s;
-  }
-  .addproducts__container .left-side {
-    /* height: 100vh; */
-    width: 70%;
-    background-color: var(--softer-color);
-  }
-  .addproducts__container .right-side {
-    /* height: 100vh; */
-    width: 30%;
-    background-color: var(--color-white);
-    padding: 0 1rem;
-  }
-  .right-side-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-  }
-  .right-side-body {
-    padding: 2.5rem 1rem;
-    /* background-color: var(--softer-color); */
-    height: 70vh;
-    overflow: scroll;
-  }
-  .right-side-footer {
-    height: 20vh;
-    /* background-color: var(--color-primary); */
-  }
-  .total-items {
-    background-color: var(--color-primary);
-    padding: 0.5rem 1rem;
-    color: var(--color-white);
-    border-radius: 0.5rem;
-  }
-  .footer-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-  }
-  .bar {
-    height: 1px;
-    background-color: var(--softer-color);
-  }
-  .check-out {
-    text-align: center;
-  }
-  .check-out-btn {
-    font-size: 2rem;
-    padding: 1rem 2rem;
-    background-color: var(--color-primary);
-    border: 2px solid var(--color-white);
-    color: var(--color-white);
-    border-radius: 0.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .check-out-btn:hover {
-    background-color: var(--color-white);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
-  /* Add Products End */
-  
+.card-list-img {
+  width: 3rem;
+  margin-top: -5rem;
+}
+
+.card-list-add-minus-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-list-add-minus-body p {
+  margin: 0;
+}
+
+.plus-items-minus {
+  display: flex;
+}
+
+.plus-btn,
+.minus-btn,
+.num-of-items {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-white);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  min-width: 30px;
+  min-height: 20px;
+  display: inline-block;
+  text-align: center;
+  padding: 0.3rem 0.5rem;
+  transition: 0.2s;
+}
+
+.plus-btn,
+.minus-btn {
+  cursor: pointer;
+}
+
+.plus-btn {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.plus-btn:hover {
+  background-color: var(--color-waring);
+}
+
+.minus-btn {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.minus-btn:hover {
+  background-color: var(--color-danger);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  color: var(--color-white);
+  background-color: var(--color-danger);
+}
+
+/* Card List End */
+
+/* Card Body Start */
+.card__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 20vh;
+}
+
+/* Card Body End */
+
+
+/* Card Start */
+.card {
+  /* border: 1px solid var(--softer-color); */
+  box-shadow: 1px 1px 5px var(--softer-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__img {
+  width: 30%;
+}
+
+.card p {
+  color: var(--soft-color);
+}
+
+.card h4,
+p {
+  margin: 0.5rem auto;
+}
+
+.card h2 {
+  text-decoration: underline;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 10px var(--softer-color);
+  transform: scale(1.01);
+}
+
+.card-price-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-item-btn,
+.remove-item-btn {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  display: block;
+  font-size: 1rem;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.remove-item-btn {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.add-item-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.remove-item-btn:hover {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+}
+
+/* Card End */
+
+
+
+/* Add Products Start */
+.addproducts__container {
+  /* height: 100vh; */
+  position: fixed;
+
+  width: 100%;
+  top: 0;
+  right: 0;
+  display: flex;
+  z-index: 2;
+  animation: showhide 0.2s;
+}
+
+.animate {
+  animation: hideshow 0.2s;
+}
+
+.addproducts__container .left-side {
+  /* height: 100vh; */
+  width: 70%;
+  background-color: var(--softer-color);
+}
+
+.addproducts__container .right-side {
+  /* height: 100vh; */
+  width: 30%;
+  background-color: var(--color-white);
+  padding: 0 1rem;
+}
+
+.right-side-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+}
+
+.right-side-body {
+  padding: 2.5rem 1rem;
+  /* background-color: var(--softer-color); */
+  height: 70vh;
+  overflow: scroll;
+}
+
+.right-side-footer {
+  height: 20vh;
+  /* background-color: var(--color-primary); */
+}
+
+.total-items {
+  background-color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  color: var(--color-white);
+  border-radius: 0.5rem;
+}
+
+.footer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.bar {
+  height: 1px;
+  background-color: var(--softer-color);
+}
+
+.check-out {
+  text-align: center;
+}
+
+.check-out-btn {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.check-out-btn:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Add Products End */
+
 /* Card Staus */
 .ui-change-btn {
-    width: fit-content;
-    padding: 1rem 2rem;
-    display: block;
-    font-size: 1rem;
-    background-color: var(--color-white);
-    border: 2px solid var(--color-primary);
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
-  .ui-change-btn span {
-    background-color: var(--color-danger);
-    display: inline-block;
-    padding: 0.4rem;
-    margin: 0 0.5rem;
-    border-radius: 0.5rem;
-    color: var(--color-white);
-  }
+  width: fit-content;
+  padding: 1rem 2rem;
+  display: block;
+  font-size: 1rem;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-primary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.ui-change-btn span {
+  background-color: var(--color-danger);
+  display: inline-block;
+  padding: 0.4rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--color-white);
+}
+
 /* Card Status End */

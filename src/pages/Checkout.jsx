@@ -1,56 +1,56 @@
 import React, { useEffect, useState, createContext, useContext } from "react"
 import { useRef } from "react";
 import { useOutletContext } from 'react-router-dom'
-import CheckoutProduct from  '../components/CheckoutProducts'
+import CheckoutProduct from '../components/CheckoutProducts'
 import '../stylesheets/checkout.css'
 
 
 export const LoginContext = createContext();
 
 
-function Checkout(){
-    const { prodState, cartState, sliderState } = useOutletContext()
-    const [cart, setCart] = cartState
+function Checkout() {
+  const { prodState, cartState, sliderState } = useOutletContext()
+  const [cart, setCart] = cartState
 
-    const total = cart
-      .reduce((acc, prod) => {
-        return acc + Number(prod.qty) * Number(prod.price)
+  const total = cart
+    .reduce((acc, prod) => {
+      return acc + Number(prod.qty) * Number(prod.price)
+    }, 0)
+    .toFixed(2)
+
+
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
+  const [inputValue, setInputValue] = useState('')
+
+  const showDivRef = useRef(null);
+
+  function changeLoggedIn(value) {
+    value ? setLoggedIn(value) : localStorage.clear()
+  }
+
+  // Items function
+  const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
+    const total = items
+      .reduce((pre, cur) => {
+        return pre + Number(cur.addNumber) * Number(cur.price);
       }, 0)
-      .toFixed(2)
-      
-   
-      const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
-      const [inputValue, setInputValue] = useState('')
-    
-      const showDivRef = useRef(null);
+      .toFixed(2);
+  }
 
-      function changeLoggedIn(value) {
-        value ? setLoggedIn(value) : localStorage.clear()
-      }
 
-      // Items function
-      const AddProducts = ({ items, click, removeItem, setAddedItem }) => {
-        const total = items
-          .reduce((pre, cur) => {
-            return pre + Number(cur.addNumber) * Number(cur.price);
-          }, 0)
-          .toFixed(2);
-        }
-    
-
-    return(
-      <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
-        <div className="right-side">
+  return (
+    <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
+      <div className="right-side">
         <div className="right-side-header">
 
-        {/* Items in cart */}
+          {/* Items in cart */}
           <h1>
             <span className="total-items">{cart.length}</span>
             {cart.length <= 1 ? ' Item ' : '   Items '}
             In Cart
           </h1>
 
-        {/* Clear Cart */}
+          {/* Clear Cart */}
           <button
             className="remove-item-btn"
             onClick={() => {
@@ -58,7 +58,7 @@ function Checkout(){
             }}>
             ⌫
           </button>
-          
+
         </div>
 
         <div className="right-side-body">
@@ -76,14 +76,14 @@ function Checkout(){
           </div>
 
 
-          {/* Checkout Button*/}         
+          {/* Checkout Button*/}
           <div className="check-out">
             <button
               className="check-out-btn"
               onClick={() => {
                 cart.length >= 1 && print();
               }}
-          >
+            >
               Checkout
             </button>
           </div>
@@ -96,10 +96,10 @@ function Checkout(){
 
 
 
-      </LoginContext.Provider>
-      
-    )   
-    
+    </LoginContext.Provider>
+
+  )
+
 }
 
 export default Checkout;

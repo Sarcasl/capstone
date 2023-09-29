@@ -4,9 +4,7 @@ import { LoginContext } from '../App';
 import { baseUrl } from '../shared';
 import '../stylesheets/account.css'
 
-function Login() 
-
-{
+function Login() {
     const [loggedIn, setLoggedIn] = useContext(LoginContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
@@ -20,44 +18,44 @@ function Login()
 
     useEffect(() => {
         function refreshTokens() {
-          if (localStorage.getItem('refresh')) {
-            const url = baseUrl + 'api/token/refresh/'
-            fetch(url, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                refresh: localStorage.getItem('refresh')
-              })
-            })
-              .then((response) => {
-                return response.json()
-              })
-              .then((data) => {
-                localStorage.setItem('access', data.access)
-                localStorage.setItem('refresh', data.refresh)
-                setLoggedIn(true)
-              })
-          }
+            if (localStorage.getItem('refresh')) {
+                const url = baseUrl + 'api/token/refresh/'
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        refresh: localStorage.getItem('refresh')
+                    })
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        localStorage.setItem('access', data.access)
+                        localStorage.setItem('refresh', data.refresh)
+                        setLoggedIn(true)
+                    })
+            }
         }
-    
+
         const minute = 1000 * 60
         refreshTokens()
         const i = setInterval(refreshTokens, minute * 3)
-    
-        
-        fetch('https://fakestoreapi.com/products/')
-          .then((res) => res.json())
-          .then((data) => setProducts(data))
-       
-        return () => {
-          clearInterval(i)
-        }
-      }, [])
-    
 
-// Login and Logout Function
+
+        fetch('https://fakestoreapi.com/products/')
+            .then((res) => res.json())
+            .then((data) => setProducts(data))
+
+        return () => {
+            clearInterval(i)
+        }
+    }, [])
+
+
+    // Login and Logout Function
     function appLogin(e) {
         e.preventDefault();
         const url = 'https://fakestoreapi.com/auth/login'
@@ -74,7 +72,7 @@ function Login()
             .then((response) => {
 
 
-    return response.json();
+                return response.json();
             })
             .then((data) => {
                 localStorage.setItem('token', data.token);
@@ -88,7 +86,7 @@ function Login()
     }
 
 
-// Login CSS    
+    // Login CSS    
     return (
         <form className="m-2 w-full max-w-sm" id="customer" onSubmit={appLogin}>
             <div className="md:flex md:items-center mb-6">
@@ -113,7 +111,6 @@ function Login()
                 <div className="md:w-1/4">
                     <label for="password">Password</label>
                 </div>
-
                 <div className="md:w-3/4">
                     <input
                         id="password"
@@ -133,12 +130,12 @@ function Login()
     );
 
 
-    
-    
-    
+
+
+
 }
 
-    
+
 
 
 
