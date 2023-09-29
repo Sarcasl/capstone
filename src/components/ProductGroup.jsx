@@ -1,6 +1,7 @@
 import React from 'react'
 
-function productGroup ({ category, setCategory }) {
+
+const productGroup = ({ category, setCategory }) =>  {
     return (
         <div className='productGroup'>
             <h4>Categories</h4>
